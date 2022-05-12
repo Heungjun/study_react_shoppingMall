@@ -1,9 +1,19 @@
+import { QueryClientProvider } from "react-query";
 import { useRoutes } from "react-router-dom";
+import { getClient } from "./queryClient";
 import { routes } from "./routes";
+import { ReactQueryDevtools } from "react-query/devtools";
 
 function App() {
   const element = useRoutes(routes);
-  return element;
+  const queryClient = getClient();
+
+  return (
+    <QueryClientProvider client={queryClient}>
+      {element}
+      <ReactQueryDevtools initialIsOpen={false} />
+    </QueryClientProvider>
+  );
 }
 
 export default App;
