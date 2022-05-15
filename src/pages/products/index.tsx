@@ -11,8 +11,6 @@ const ProductList = () => {
     })
   );
 
-  console.log(data);
-
   return (
     <div>
       <ul className="products">
