@@ -8,6 +8,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "graphql-tag": "^2.12.6",
     "msw": "^0.40.0",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
