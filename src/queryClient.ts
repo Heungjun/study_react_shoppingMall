@@ -29,7 +29,8 @@ export const getClient = (() => {
   };
 })();
 
-const BASE_URL = "/";
+// const BASE_URL = import.meta.env.VITE_SERVER_URL as string;
+const BASE_URL = "https://localhost:3000";
 const FAKE_API_URL = "https://fakestoreapi.com";
 
 export const restFetcher = async ({
@@ -44,12 +45,12 @@ export const restFetcher = async ({
   params?: AnyOBJ;
 }) => {
   try {
-    let url = `${BASE_URL}${path}`;
+    let url = `${FAKE_API_URL}${path}`;
     const fetchOptions: RequestInit = {
       method,
       headers: {
         "Content-Type": "application/json",
-        "Access-Control-Allow-Origin": BASE_URL,
+        "Access-Control-Allow-Origin": FAKE_API_URL,
       },
     };
     if (params) {
@@ -68,7 +69,10 @@ export const restFetcher = async ({
 };
 
 export const graphqlFetcher = (query: RequestDocument, variables = {}) =>
-  request(BASE_URL, query, variables);
+  request(`${BASE_URL}/graphql`, query, variables, {
+    "Content-Type": "application/json",
+    "Access-Control-Allow-Origin": BASE_URL,
+  });
 
 export const QueryKeys = {
   PRODUCTS: "PRODUCTS",

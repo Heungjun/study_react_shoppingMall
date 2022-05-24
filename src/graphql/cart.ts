@@ -1,4 +1,4 @@
-import { gql } from "graphql-request";
+import gql from "graphql-tag";
 
 export type CartType = {
   id: string;
@@ -25,6 +25,12 @@ export const UPDATE_CART = gql`
     price
     title
     amount
+  }
+`;
+
+export const DELETE_CART = gql`
+  mutation DELETE_CART($id: string) {
+    id
   }
 `;
 

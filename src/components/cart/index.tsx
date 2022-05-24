@@ -1,13 +1,19 @@
-import { Cart } from "../../graphql/cart";
+import { CartType } from "../../graphql/cart";
 import CartItem from "./item";
 
-const CartList = ({ items }: { items: Cart[] }) => {
+const CartList = ({ items }: { items: CartType[] }) => {
   return (
-    <ul>
-      {items.map((item) => (
-        <CartItem {...item} key={item.id} />
-      ))}
-    </ul>
+    <>
+      <label>
+        <input type="checkbox" />
+        전체선택
+      </label>
+      <ul>
+        {items.map((item) => (
+          <CartItem {...item} key={item.id} />
+        ))}
+      </ul>
+    </>
   );
 };
 

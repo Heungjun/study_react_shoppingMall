@@ -1,6 +1,12 @@
 import { graphql } from "msw";
 import { v4 as uuid } from "uuid";
-import { ADD_CART, CartType, GET_CART, UPDATE_CART } from "../graphql/cart";
+import {
+  ADD_CART,
+  CartType,
+  DELETE_CART,
+  GET_CART,
+  UPDATE_CART,
+} from "../graphql/cart";
 import GET_PRODUCTS, { GET_PRODUCT } from "../graphql/products";
 
 const mock_products = Array.from({ length: 20 }).map((_, i) => ({
@@ -36,24 +42,23 @@ export const handlers = [
   }),
 
   graphql.mutation(ADD_CART, (req, res, context) => {
-    const newData = { ...cartData };
+    const newCartData = { ...cartData };
     const id = req.variables.id;
-    if (newData[id]) {
-      newData[id] = {
-        ...newData[id],
-        amount: (newData[id].amount || 0) + 1,
-      };
-    } else {
-      const found = mock_products.find((item) => item.id === req.variables.id);
-      if (found) {
-        newData[id] = {
-          ...found,
-          amount: 1,
-        };
-      }
+    const targetProduct = mock_products.find(
+      (item) => item.id === req.variables.id
+    );
+    if (!targetProduct) {
+      throw new Error("상품이 없습니다.");
     }
-    cartData = newData;
-    return res(context.data(newData));
+
+    const newItem = {
+      ...targetProduct,
+      amount: (newCartData[id].amount || 0) + 1,
+    };
+    newCartData[id] = newItem;
+    cartData = newCartData;
+
+    return res(context.data(newItem));
   }),
 
   graphql.mutation(UPDATE_CART, (req, res, context) => {
@@ -62,11 +67,19 @@ export const handlers = [
     if (!newData[id]) {
       throw new Error("없는 데이터 입니다.");
     }
-    newData[id] = {
+    const newItem = {
       ...newData[id],
       amount,
     };
+    newData[id] = newItem;
     cartData = newData;
-    return res(context.data(newData));
+    return res(context.data(newItem));
+  }),
+
+  graphql.mutation(DELETE_CART, ({ variables: { id } }, res, context) => {
+    const newData = { ...cartData };
+    delete newData[id];
+    cartData = newData;
+    return res(context.data(id));
   }),
 ];
