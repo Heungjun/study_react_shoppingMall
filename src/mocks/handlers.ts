@@ -53,7 +53,7 @@ export const handlers = [
 
     const newItem = {
       ...targetProduct,
-      amount: (newCartData[id].amount || 0) + 1,
+      amount: (newCartData[id]?.amount || 0) + 1,
     };
     newCartData[id] = newItem;
     cartData = newCartData;
