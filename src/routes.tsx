@@ -1,5 +1,6 @@
 import { lazy } from "react";
 import Cart from "./pages/cart";
+import PaymentIndex from "./pages/payments";
 import GlobalLayout from "./pages/_layout";
 
 const Index = lazy(() => import("./pages/index"));
@@ -15,6 +16,7 @@ export const routes = [
       { path: "/products", element: <ProductIndex />, index: true },
       { path: "/products/:id", element: <ProductsId /> },
       { path: "/cart", element: <Cart /> },
+      { path: "/payment", element: <PaymentIndex />, index: true },
     ],
   },
 ];
@@ -24,4 +26,5 @@ export const pages = [
   { route: "/products" },
   { route: "/products/:id" },
   { route: "/cart" },
+  { route: "/payment" },
 ];
