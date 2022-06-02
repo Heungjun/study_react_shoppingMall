@@ -1,0 +1,46 @@
+{
+  "name": "client",
+  "private": true,
+  "version": "0.0.0",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@types/uuid": "^8.3.4",
+    "graphql-request": "^4.2.0",
+    "graphql-tag": "^2.12.6",
+    "msw": "^0.40.0",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0",
+    "react-query": "^3.39.0",
+    "react-router-dom": "^6.3.0",
+    "recoil": "^0.7.3-alpha.2",
+    "uuid": "^8.3.2",
+    "yarn": "^1.22.18"
+  },
+  "devDependencies": {
+    "@types/react": "^18.0.0",
+    "@types/react-dom": "^18.0.0",
+    "@vitejs/plugin-react": "^1.3.0",
+    "sass": "^1.51.0",
+    "typescript": "^4.6.3",
+    "vite": "^2.9.7"
+  },
+  "msw": {
+    "workerDirectory": "public"
+  },
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Heungjun/study_react_shoppingMall.git"
+  },
+  "author": "Heungjun <gmdwns92@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Heungjun/study_react_shoppingMall/issues"
+  },
+  "homepage": "https://github.com/Heungjun/study_react_shoppingMall#readme",
+  "description": ""
+}
