@@ -8,7 +8,7 @@ const Cart = () => {
     staleTime: 0,
     cacheTime: 1000,
   });
-  const cartItems = Object.values(data || {}) as CartType[];
+  const cartItems = data?.cart as CartType[];
   if (!cartItems.length) return <div>장바구니가 비었어요</div>;
 
   return <CartList items={cartItems} />;

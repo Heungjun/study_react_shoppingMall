@@ -30,7 +30,7 @@ export const getClient = (() => {
 })();
 
 // const BASE_URL = import.meta.env.VITE_SERVER_URL as string;
-const BASE_URL = "https://localhost:3000";
+const BASE_URL = "https://localhost:8000/graphql";
 const FAKE_API_URL = "https://fakestoreapi.com";
 
 export const restFetcher = async ({
